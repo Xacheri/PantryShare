@@ -104,7 +104,7 @@ if(isset($_GET['action']))
     if($_GET['action'] == 'ordersbyzip')
     {
         $zipcode = filter_input(INPUT_GET, 'zipcode', FILTER_SANITIZE_SPECIAL_CHARS);
-        $sql = 'select * from orders where status=1 join users on orders.UserID=users.UserID where user.Location=(:zipcode)'
+        $sql = 'select * from orders join users on orders.UserID=users.UserID where users.Location=(:zipcode) and where orders.status=1'
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':zipcode,' $zipcode);
         $qry = $db->query($stmt)->fetchAll();
@@ -116,7 +116,7 @@ if(isset($_GET['action']))
     if($_GET['action'] == 'getfoodbycategory')
     {   
         $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
-        $sql = 'select * from fooditems join categories on fooditems.CategoryID=categories.CategoryID where categories.CategoryName=(:category)'
+        $sql = 'select * from fooditems join categories on fooditems.CategoryID=categories.CategoryID where categories.CategoryName="(:category)"'
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':category,' $category);
         $qry = $db->query($stmt)->fetchAll();
