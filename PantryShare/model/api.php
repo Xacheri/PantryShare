@@ -32,7 +32,7 @@ if(isset($_POST['action']))
     if($_POST['action'] == 'login') 
     {
         //need username and pw to login
-        if(isset($_POST['username']) && isset($_POST['password']));
+        if(isset($_POST['username']) && isset($_POST['password']))
         {
             
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -148,7 +148,7 @@ if(isset($_GET['action']))
     if($_GET['action'] == 'getcategories')
     {
         $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
-        $sql = 'select * from categories'
+        $sql = 'select * from categories';
         $stmt = $db->prepare($sql);
         $qry = $stmt->fetchAll();
         echo json_encode($qry); 
