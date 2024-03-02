@@ -59,7 +59,6 @@ const login = async function(){
         </form>
     </div>
 </template>
-
 <style scoped>
 
 </style>
