@@ -145,12 +145,14 @@ if(isset($_GET['action']))
     }
 
     //GET CATEGORIES
+    // PROPER PDO SYNTAX HERE
     if($_GET['action'] == 'getcategories')
     {
         $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         $sql = 'select * from categories';
         $stmt = $db->prepare($sql);
-        $qry = $db->query($stmt)->fetchAll();
+        $stmt->execute();
+        $qry = $stmt->fetchAll();
         echo json_encode($qry); 
     }
 
