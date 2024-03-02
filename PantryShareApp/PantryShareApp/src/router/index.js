@@ -36,15 +36,14 @@ const router = createRouter({
       component: () => import('../views/SearchView.vue')
     },
     {
+      path: '/makerequest',
+      name: 'makerequest',
+      component: () => import('../views/MakeRequestView.vue'),
+     {
       path: '/stockthepantry',
       name: 'stockthepantry',
       component: () => import('../views/StockPantryView.vue')
-    },
-    {
-      path:'/makerequest',
-      name:'makerequest',
-      component: () => import('../views/RequestView.vue')
-    },
+    }
     {
       path: '/servicedetails',
       name: 'servicedetails',
