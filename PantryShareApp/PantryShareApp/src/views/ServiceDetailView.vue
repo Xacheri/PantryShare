@@ -21,7 +21,7 @@
       </div>
   
       <!-- Fulfilling Request Button -->
-      <button @click="fulfillRequest">Fulfilling Request</button>
+      <button @click="fulfillRequest">Fulfill Request</button>
     </div>
   </template>
   

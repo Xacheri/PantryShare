@@ -20,6 +20,7 @@ const toggleMenu = function () {
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/login">Login</RouterLink>
         <RouterLink to="/register">Register</RouterLink>
+        <RouterLink to="/profile">Profile</RouterLink>
         <RouterLink to="/search">Search</RouterLink>
         <RouterLink to="/stockthepantry">Stock the Pantry</RouterLink>
         <RouterLink to="/makerequest">Make Request</RouterLink>
