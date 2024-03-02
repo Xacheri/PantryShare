@@ -59,7 +59,6 @@ const login = function(){
         </form>
     </div>
 </template>
-
 <style scoped>
 
 </style>
