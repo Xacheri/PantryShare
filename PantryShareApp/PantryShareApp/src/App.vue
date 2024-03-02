@@ -11,6 +11,7 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/login">Login</RouterLink>
         <RouterLink to="/register">Register</RouterLink>
         <RouterLink to="/search">Search</RouterLink>
+        <RouterLink to="/makerequest">Make Request</RouterLink>
     </nav>
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
