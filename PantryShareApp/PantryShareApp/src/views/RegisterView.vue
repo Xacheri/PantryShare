@@ -71,6 +71,7 @@
             <button @click.prevent="register">Register</button>
         </form>
     </div>
+    
 </template>
 
 <style scoped>
