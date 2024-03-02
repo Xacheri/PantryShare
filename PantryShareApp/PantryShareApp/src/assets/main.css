@@ -34,3 +34,68 @@ a,
     padding: 0 2rem;
   }
 }
+
+
+.fade-inflate-fast {
+  animation-name: fade-in, inflate;
+  animation-timing-function: ease-out, ease-out;
+  animation-duration: 1000ms, 1000ms;
+}
+
+
+.fade-deflate-fast {
+  animation-name: deflate, fade-out;
+  animation-timing-function: ease-out, ease-out;
+  animation-duration: 1000ms, 1000ms;
+  animation-fill-mode: forwards, forwards;
+}
+
+/* name : fade in */
+/* purpose : fade an object in */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    ;
+  }
+}
+
+/* name : fade out */
+/* purpose : fade an object out */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    ;
+  }
+}
+
+/* name : inflate */
+/* purpose : grow an object into the frame */
+@keyframes inflate {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+/* name : deflate */
+/* purpose : shrink an object from the frame */
+@keyframes deflate {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0);
+  }
+}
