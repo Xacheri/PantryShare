@@ -15,30 +15,30 @@ const username = ref('');
 const password = ref('');
 
 // this function is called when the form is submitted
-const login = function(){
+const login = async function(){
     // we can access the values of the input fields using the .value property
     console.log('Username:', username.value);
     console.log('Password:', password.value);
     // we can call a REST API to login
     // using the fetch function
-    // try {
-    //     const response = await fetch('http://localhost/api/login', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             username: username.value,
-    //             password: password.value
-    //         })
-    //     });
+    try {
+        const response = await fetch('http://localhost/api/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username.value,
+                password: password.value
+            })
+        });
 
-    //     const data = await response.json();
-    //     console.log('Success:', data);
-    //     // do stuff with the data (like redirect to another page)
-    // } catch (error) {
-    //     console.error('Error:', error);
-    // }
+        const data = await response.json();
+        console.log('Success:', data);
+        // do stuff with the data (like redirect to another page)
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 </script>
 

@@ -38,7 +38,16 @@ const router = createRouter({
     {
       path: '/makerequest',
       name: 'makerequest',
-      component: () => import('../views/MakeRequestView.vue')
+      component: () => import('../views/MakeRequestView.vue'),
+     {
+      path: '/stockthepantry',
+      name: 'stockthepantry',
+      component: () => import('../views/StockPantryView.vue')
+    }
+    {
+      path: '/servicedetails',
+      name: 'servicedetails',
+      component: () => import('../views/ServiceDetailView.vue')
     }
   ],
 })
