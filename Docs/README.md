@@ -6,7 +6,7 @@ verbally miscommunicating over teams.
 ## Table of Contents
 
 1. [Introduction](introduction.md)
-2. [Setup](installation.md)
+2. [Setup](PantryShareApp\PantryShareApp\README.md)
 3. [Vue.js Guides](vueguides.md)
-4. [PHP Guides](examples.md)
-5. [PantryShare Documentation](contributing.md)
+4. [PHP Guides](phpguides.md)
+5. [PantryShare Documentation](pantrysharedocs.md)
