@@ -10,6 +10,9 @@ This template should help get you started developing with Vue 3 in Vite.
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
+## How this project got intialized (How to Create a Vue 3 PWA with Vite)
+[Secret Initialization Techniques](Docs\ModernViteVuePWAInitGuide.md)
+
 ## Project Setup
 
 ```sh
