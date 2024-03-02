@@ -58,7 +58,7 @@ Then run `npm run build` to create your app in the `dist/` folder.
 
 ## Running the Build from XAMPP
 
-A deployed PWA needs to be deployed at the exact root of the web server. This is because there is source-mapping going on behind the scenes in the build that makes that assumption. There are ways to adjust this mapping, but I am lazy. The `htdocs` folder in XAMPP IS the root folder of an Apache web server. So if you delete everything out of that, and paste the contents of your `dist` folder into the `htdocs` folder, you can run the web app that way. You can still have an API running out of an `htdocs/api/` folder in there if you want.
+A deployed PWA needs to be deployed at the exact root of the web server. This is because there is source-mapping going on behind the scenes in the build that makes that assumption. There are ways to adjust this mapping, but I am lazy. The `htdocs` folder in XAMPP IS the root folder of an Apache web server. So if you delete everything out of that, and paste the contents of your `dist` folder into the `htdocs` folder, you can run the web app that way. You can still have an API running out of an `htdocs/api/` folder in there if you want. Note that visiting your API endpoints in the browser won't work, since it will think you're accessing a weird app view, but fetch requests and curl requests still work.
 
 ## Installing the PWA
 
