@@ -2,28 +2,57 @@
 import { onMounted, ref } from 'vue'
 import PantryRequestCard from '@/components/PantryRequestCard.vue'
 
-const pantryRequests = ref([
-    {
-      text: 'Item 1',
-      quantity: 5
-    },
-    {
-      text: 'Item 2',
-      quantity: 3
-    },
-    {
-      text: 'Item 3',
-      quantity: 2
-    },
-    {
-      text: 'Item 4',
-      quantity: 1
-    },
-    {
-      text: 'Item 5',
-      quantity: 4
-    }
-]);
+const pantryRequests = ref(
+  [{
+    order: {
+      OrderID: 1,
+      UserID: 1,
+      FamilySize: 3,
+      Status: "Open",
+      PickupLocation: "Krogers on S. Glenstone",
+      orderItems: [
+        {
+          FoodID: 1,
+          FoodName: "Apples",
+          CategoryID: 1,
+          CategoryName: "Fruits",
+        },
+        {
+          FoodID: 8,
+          FoodName: "Onions",
+          CategoryID: 2,
+          CategoryName: "Vegetables",
+        },
+        {
+          FoodID: 10,
+          FoodName: "Potatoes",
+          CategoryID: 2,
+          CategoryName: "Vegetables",
+        },
+        {
+          FoodID: 21,
+          FoodName: "Milk",
+          CategoryID: 5,
+          CategoryName: "Dairy",
+        },
+        {
+          FoodID: 16,
+          FoodName: "Fish",
+          CategoryID: 4,
+          CategoryName: "Proteins",
+        },
+      ],
+  },
+  user: {
+    UserID: 1,
+    UserName: "llathrop",
+    EmailAddress: "ll0128774@otc.edu",
+    FirstName: "Louis",
+    LastName: "Lathrop",
+    Location: 65804,
+  }
+}]
+);
 
 const getPantryRequests = function() {
     console.log('Getting pantry requests');
