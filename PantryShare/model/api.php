@@ -80,7 +80,7 @@ if(isset($_POST['action']))
         //get max order number and +1
         $sql = "select MAX(OrderID) from orderitems"; 
         $stmt = $db->prepare($sql);
-        $highOrderNum = $db->query($stmt)->fetchAll();
+        $highOrderNum = $stmt->fetchAll();
         
         $ordernum = $highOrderNum ++;
 
