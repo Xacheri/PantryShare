@@ -5,6 +5,9 @@ header('Content-Type application/json');
 
 global $db;
 
+
+//POST ACTIONS
+//INCLUDES LOGIN, SIGNUP, SUBMIT FOODREQUEST
 if(isset($_POST['action']))
 {
     //NEW USER SIGN UP 
@@ -24,7 +27,7 @@ if(isset($_POST['action']))
     }
 
 
-    //LOGIN API
+    //LOGIN
     //takes info from form data in the POST
     if($_POST['action'] == 'login') 
     {
@@ -74,9 +77,14 @@ if(isset($_POST['action']))
         $stmt->bindValue(':PickupLocation,' $_POST['PickupLocation']);
         $stmt->execute();
 
-        //$ordernum = get max order number and +1
+        //get max order number and +1
+        $sql = "select MAX(OrderID) from orderitems" 
+        $stmt = $db->prepare($sql);
+        $highOrderNum = $db->query($stmt)->fetchAll();
+        
+        $ordernum = $highOrderNum ++;
 
-        //add items to orderitems
+        //add items to orderitems. will need to add to this as we figure out how the items are being sent over via POST
         $sql = "insert into orderitems (OrderID, FoodID) values (:OrderID :fooditem)";
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':OderID,' $ordernum);
@@ -86,5 +94,57 @@ if(isset($_POST['action']))
         //header(); put redirect location here if neccessary
     }
 };
+
+
+//GET ACTIONS
+//INCLUDES GETORDERSBYZIP, GETFOODBYCATEGORY, GETCATEGORIES, GETUSERBYID
+if(isset($_GET['action']))
+{
+    //GET ORDERS BY ZIPCODE
+    if($_GET['action'] == 'ordersbyzip')
+    {
+        $zipcode = filter_input(INPUT_GET, 'zipcode', FILTER_SANITIZE_SPECIAL_CHARS);
+        $sql = 'select * from orders where status=1 join users on orders.UserID=users.UserID where user.Location=(:zipcode)'
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':zipcode,' $zipcode);
+        $qry = $db->query($stmt)->fetchAll();
+        echo json_encode($qry);
+
+    }
+
+    //GET FOODITEMS BY CATEGORY
+    if($_GET['action'] == 'getfoodbycategory')
+    {   
+        $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
+        $sql = 'select * from fooditems join categories on fooditems.CategoryID=categories.CategoryID where categories.CategoryName=(:category)'
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':category,' $category);
+        $qry = $db->query($stmt)->fetchAll();
+        echo json_encode($qry); 
+    }
+
+    //GET CATEGORIES
+    if($_GET['action'] == 'getcategories')
+    {
+        $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
+        $sql = 'select * from categories'
+        $stmt = $db->prepare($sql);
+        $qry = $db->query($stmt)->fetchAll();
+        echo json_encode($qry); 
+    }
+
+    //GET USER BY ID
+    if($_GET['action'] == 'getuserbyid')
+    {
+        $userID = filter_input(INPUT_GET, 'userid', FILTER_SANITIZE_SPECIAL_CHARS);
+        $sql = 'select * from users where UserID=(:userid)';
+        $stmt->bindValue(':userid,' $UserID);
+        $stmt = $db->prepare($sql);
+        $qry = $db->query($stmt)->fetchAll();
+        echo json_encode($qry); 
+    }
+
+
+}
 
 ?>
