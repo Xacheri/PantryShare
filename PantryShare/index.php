@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-    include "View/landingPage.php";
-    ?>
+
+    <div class="landing" id="landing">
+        <a href="#landingPage">
+            <img src="images/logo.png" alt="logoIcon">
+        </a>
+    </div>
+
+    
+    <script>
+        setTimeout(function(){
+            window.location.href = "View/login.php";
+        }, 1000);
+    </script>
         /*switch($action){
             case "register":
                 //$username = $_POST['username'];
@@ -28,7 +39,7 @@
                 // with checkbox values in list form submitted
                 // by user in request
             
-            case "communicate": // this should just show notification messages such as.. "Your request has been deliverd" or "Thank you for fulfilling a request"
+            case "communicate": // this should just show notification messages such as.. "Your request has been delivered" or "Thank you for fulfilling a request"
                 include "View/Messages.php";
         }*/
 
