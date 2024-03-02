@@ -6,11 +6,14 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <header>
     <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
-        <RouterLink to="/search">Search</RouterLink>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/login">Login</RouterLink>
+      <RouterLink to="/register">Register</RouterLink>
+      <RouterLink to="/search">Search</RouterLink>
+      <RouterLink to="/stockthepantry">Stock the Pantry</RouterLink>
+      <RouterLink to="/makerequest">Make Request</RouterLink>
+      <RouterLink to="/servicedetails">Service Details</RouterLink>
     </nav>
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
