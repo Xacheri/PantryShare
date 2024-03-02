@@ -89,3 +89,10 @@ const login = function(){
 <style scoped>
 
 </style>
+```
+## Reference Links
+[Using Refs to access DOM Elements](https://vuejs.org/guide/essentials/template-refs)
+[Using Refs to access Values and Reactivity Fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)
+[Using Events (@click) and Event Modifiers (.prevent)](https://vuejs.org/guide/essentials/event-handling)
+[V-Model for Forms](https://vuejs.org/guide/essentials/forms)
+[BONUS: V-Model for Components](https://vuejs.org/guide/components/v-model.html)
