@@ -7,14 +7,14 @@ global $db;
 
 
 //POST ACTIONS
-//INCLUDES LOGIN, SIGNUP, SUBMIT FOODREQUEST
+//INCLUDES LOGIN, SIGNUP, SUBMIT FOODREQUEST, FULLFILLFOODREQUEST
 if(isset($_POST['action']))
 {
     //NEW USER SIGN UP 
     //takes info from form data in the POST
     if($_POST['action'] == 'signup') 
     {
-        $sql = "insert into users (FirstName, LastName, EmailAddress, Location, UserName, Password) values (:FirstName, :LastName, :EmailAddress, :Location, :UserName, :Password)"
+        $sql = "insert into users (FirstName, LastName, EmailAddress, Location, UserName, Password) values (:FirstName, :LastName, :EmailAddress, :Location, :UserName, :Password)";
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':Firstname,' $_POST['FirstName']);
         $stmt->bindValue(':LastName,' $_POST['LastName']);
@@ -49,17 +49,17 @@ if(isset($_POST['action']))
             {            
                 if($result[0]['password']) === $password
                 {
-                    header("");//redirect to profile page
+                    //header("");//redirect to profile page
                 }
                 else
                 {
-                    header("");//send to login page
+                    //header("");//send to login page
                 }                
             }
             //if no username match, send them back to registration page
             else
             {
-                header("");//send to login page      
+                //header("");//send to login page      
             }
         }
     }
@@ -70,7 +70,7 @@ if(isset($_POST['action']))
     if($_POST['action'] == 'foodrequest') //update with correction action if needed
     {
         //create new order, status will always be 1 for open on a new order
-        $sql = "insert into orders (UserID, FamilySize, Status, PickupLocation) values (:UserID, :FamilySize, 1, :PickupLocation)"
+        $sql = "insert into orders (UserID, FamilySize, Status, PickupLocation) values (:UserID, :FamilySize, 1, :PickupLocation)";
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':UserID,' $_POST['UserID']);
         $stmt->bindValue(':FamilySize,' $_POST['FamilySize']);
@@ -78,7 +78,7 @@ if(isset($_POST['action']))
         $stmt->execute();
 
         //get max order number and +1
-        $sql = "select MAX(OrderID) from orderitems" 
+        $sql = "select MAX(OrderID) from orderitems"; 
         $stmt = $db->prepare($sql);
         $highOrderNum = $db->query($stmt)->fetchAll();
         
@@ -93,6 +93,27 @@ if(isset($_POST['action']))
 
         //header(); put redirect location here if neccessary
     }
+
+    //FULFILL FOOD REQUEST
+    //MUST SENT ORDER ID AND USERID OF THE USER GIVING THE FOOD
+    if($_POST['action'] == 'fulfillfoodrequest')
+    {
+        $sql = 'update orders set Status = 2 where OrderID = (:orderid)';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':orderid,' $_POST['orderid']);
+        $stmt->execute();
+
+        $sql = 'insert into completedorders (OrderID, GiverID, Date) values (:orderid, :giverid, :date)';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':orderid,' $_POST['orderid']);
+        $stmt->bindValue(':giverid,' $_POST['giverid']);
+        $date = date("Y-m-d");
+        $stmt->bindValue(':date,'$date);
+        $stmt->execute();
+        //header(); put redirect location here if neccessary
+    }
+
+
 };
 
 
@@ -104,7 +125,7 @@ if(isset($_GET['action']))
     if($_GET['action'] == 'ordersbyzip')
     {
         $zipcode = filter_input(INPUT_GET, 'zipcode', FILTER_SANITIZE_SPECIAL_CHARS);
-        $sql = 'select * from orders join users on orders.UserID=users.UserID where users.Location=(:zipcode) and where orders.status=1'
+        $sql = 'select * from orders join users on orders.UserID=users.UserID where users.Location=(:zipcode) and where orders.status=1';
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':zipcode,' $zipcode);
         $qry = $db->query($stmt)->fetchAll();
@@ -116,7 +137,7 @@ if(isset($_GET['action']))
     if($_GET['action'] == 'getfoodbycategory')
     {   
         $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
-        $sql = 'select * from fooditems join categories on fooditems.CategoryID=categories.CategoryID where categories.CategoryName="(:category)"'
+        $sql = 'select * from fooditems join categories on fooditems.CategoryID=categories.CategoryID where categories.CategoryName="(:category)"';
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':category,' $category);
         $qry = $db->query($stmt)->fetchAll();
