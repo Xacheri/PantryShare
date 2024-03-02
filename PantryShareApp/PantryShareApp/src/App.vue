@@ -36,7 +36,7 @@ nav {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  background-color: #f0f0f0;
+  background-color: var(--overlay-one);
   padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
