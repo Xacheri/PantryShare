@@ -3,6 +3,9 @@ Forms in a Vue.js SPA (Single-Page Application) work a little differently than f
 Beyond the syntax-magic of Vue.js, we also do not submit the form like normal, instead we call a REST API with the data
 and react based on the results of the request.
 
+**KNOW THAT document.GetElementById() IS NOT THE "Vue Way" to do things! Create ref() variables and use v-model instead if you want to access values in JS, and use v-bind
+to adjust the DOM properties**
+
 | Keyword/Feature | Usage |
 |----------|----------|
 | ref()  | Creates a reactive variable. Does what the data() function does in the Options API|
