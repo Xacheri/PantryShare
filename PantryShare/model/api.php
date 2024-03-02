@@ -7,7 +7,7 @@ global $db;
 
 
 //POST ACTIONS
-//INCLUDES LOGIN, SIGNUP, SUBMIT FOODREQUEST
+//INCLUDES LOGIN, SIGNUP, SUBMIT FOODREQUEST, FULLFILLFOODREQUEST
 if(isset($_POST['action']))
 {
     //NEW USER SIGN UP 
@@ -93,6 +93,27 @@ if(isset($_POST['action']))
 
         //header(); put redirect location here if neccessary
     }
+
+    //FULFILL FOOD REQUEST
+    //MUST SENT ORDER ID AND USERID OF THE USER GIVING THE FOOD
+    if($_POST['action'] == 'fulfillfoodrequest')
+    {
+        $sql = 'update orders set Status = 2 where OrderID = (:orderid)';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':orderid,' $_POST['orderid']);
+        $stmt->execute();
+
+        $sql = 'insert into completedorders (OrderID, GiverID, Date) values (:orderid, :giverid, :date)';
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':orderid,' $_POST['orderid']);
+        $stmt->bindValue(':giverid,' $_POST['giverid']);
+        $date = date("Y-m-d");
+        $stmt->bindValue(':date,'$date);
+        $stmt->execute();
+        //header(); put redirect location here if neccessary
+    }
+
+
 };
 
 
