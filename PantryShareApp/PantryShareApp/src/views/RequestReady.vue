@@ -15,7 +15,6 @@
   
   const router = useRouter();
   const routeParams = router.currentRoute.value.params;
-  orderId.value = routeParams.orderId;
   
   onMounted(() => {
     window.scrollTo(0, 0);
