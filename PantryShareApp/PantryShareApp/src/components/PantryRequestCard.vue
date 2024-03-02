@@ -1,4 +1,4 @@
-<!-- <script setup>
+<script setup>
 import { ref } from 'vue'
 
 // register props
@@ -9,102 +9,82 @@ const props = defineProps({
     }
 }
 )
+
+const fulfillRequest = function(){
+    console.log('Fulfilling request');
+    // // Call a REST API to fulfill the request
+    // try {
+    //     const response = await fetch('http://localhost/api/fulfillRequest', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             orderID: pantryRequest.order.OrderID
+    //         })
+    //     });
+
+    //     const data = await response.json();
+    //     console.log('Success:', data);
+    //     // do stuff with the data (like redirect to another page)
+    // } catch (error) {
+    //     console.error('Error:', error);
+    // }
+}
+
 </script>
 
 <template>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title text-info">{{ pantryRequest.order.orderItems.length + " Items at " + pantryRequest.order.PickupLocation + "."}}</h5>            <ul>
-                <li v-for="item in pantryRequest.order.orderItems" :key="item.FoodID">
-                    {{ item.FoodName }} - {{ item.CategoryName }}
-                </li>
-            </ul>
-            <p class="card-text">Status: {{ pantryRequest.order.Status }}</p>
-            <p class="card-text">Pickup Location: {{ pantryRequest.order.PickupLocation }}</p>
-            <p class="card-text">Requested by: {{ pantryRequest.user.UserName }}</p>
+    <div class="grid-container p-1">
+        <div class="grid-item">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-info">{{ pantryRequest.order.orderItems.length + " Items at " +
+                        pantryRequest.order.PickupLocation + "." }}</h5>
+                    <ul>
+                        <li v-for="(item, index) in pantryRequest.order.orderItems" :key="item.FoodID">
+                            {{ item.FoodName }}<span v-if="index !== pantryRequest.order.orderItems.length - 1">,</span><span v-else>.</span>
+                        </li>
+                    </ul>
+                    <div class="grid-item">
+                        <p class="card-text">Status: {{ pantryRequest.order.Status }}</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary m-1" @click="fulfillRequest">Fulfill Request</button>
+            </div>
         </div>
     </div>
 </template>
 
 <style scoped>
 /* Your component's CSS styles go here */
-</style> -->
-
-<template>
-  <div class="service-request-container">
-    <div class="service-request-tile" v-for="(request, index) in paginatedRequests" :key="index">
-      <h3>{{ request.serviceName }}</h3>
-      <p><strong>Description:</strong> {{ request.serviceDescription }}</p>
-      <p><strong>Category:</strong> {{ request.serviceCategory }}</p>
-      <p><strong>Location:</strong> {{ request.serviceLocation }}</p>
-    </div>
-  </div>
-</template>
-
-<script setup>
-import { ref, onMounted, computed } from 'vue'
-
-const serviceRequests = ref([]);
-
-// FOR TESTING UI
-const dummyData = [
-  {
-    id: 1,
-    serviceName: "Service Request 1",
-    serviceDescription: "Description of service request 1",
-    serviceCategory: "Category 1",
-    serviceLocation: "Location 1"
-  },
-  {
-    id: 2,
-    serviceName: "Service Request 2",
-    serviceDescription: "Description of service request 2",
-    serviceCategory: "Category 2",
-    serviceLocation: "Location 2"
-  },
-  {
-    id: 3,
-    serviceName: "Service Request 3",
-    serviceDescription: "Description of service request 3",
-    serviceCategory: "Category 3",
-    serviceLocation: "Location 3"
-  },
-  {
-    id: 4,
-    serviceName: "Service Request 4",
-    serviceDescription: "Description of service request 4",
-    serviceCategory: "Category 4",
-    serviceLocation: "Location 4"
-  }
-];
-
-onMounted(() => {
-  serviceRequests.value = dummyData; // TEST DATA - REMOVE
-});
-
-const paginatedRequests = computed(() => {
-  const pageSize = 4;
-  const currentPage = 1;
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = currentPage * pageSize;
-  return serviceRequests.value.slice(startIndex, endIndex);
-});
-</script>
-
-<style scoped>
-.service-request-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  overflow-y: auto; 
+.card {
+    margin: 2px;
+    padding: 4px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #000;
 }
 
-.service-request-tile {
-  width: 45%;
-  margin-bottom: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.card-text {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    list-style: none;
+    padding-left: 0;
+    padding: 5px;
 }
 </style>
