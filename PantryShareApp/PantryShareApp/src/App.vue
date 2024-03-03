@@ -20,7 +20,7 @@ const quickCloseMenu = function () {
   <header class="d-flex flex-column align-items-center">
     <img src="@/assets/logo.png" @click="toggleMenu" alt="logo" :width="menuClicked ? 75 : 150" />
     <transition name="fade">
-      <nav v-if="menuClicked" class="w-75" :class="navStyle">
+      <nav v-if="menuClicked" class="w-100" :class="navStyle">
         <RouterLink to="/" @click="quickCloseMenu">Home</RouterLink>
         <RouterLink to="/about" @click="quickCloseMenu">About</RouterLink>
         <RouterLink to="/login" @click="quickCloseMenu">Login</RouterLink>
@@ -43,7 +43,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   background-color: var(--overlay-one);
   padding: 0px 10px;
   border-radius: 10px;

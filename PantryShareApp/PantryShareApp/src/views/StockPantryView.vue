@@ -17,10 +17,6 @@ const getPantryRequests = function () {
   }
 }
 
-const doublePantryRequests = function () {
-  pantryRequests.value = pantryRequests.value.concat(pantryRequests.value);
-}
-
 const router = useRouter();
 const fulfillRequest = function () {
   console.log('Fulfilling request');
@@ -45,7 +41,6 @@ onMounted(() => {
           :pantry-request="item" @fulfill-request="fulfillRequest"/>
       </div>
     </div>
-    <button @click="doublePantryRequests">Double Pantry Requests</button>
   </div>
 </template>
 
