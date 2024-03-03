@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router';
 import PantryRequestCard from '@/components/PantryRequestCard.vue'
-import TestDataClass from '@/classes/TestDataClass';
+import TestDataClass from '@/classes/TestDataClass'
 
 const pantryRequests = ref([]);
 
