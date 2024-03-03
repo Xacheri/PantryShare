@@ -7,6 +7,14 @@ const props = defineProps({
     pantryRequest: {
         type: Object,
         required: true
+    },
+    noButton: {
+        type: Boolean,
+        default: false
+    },
+    privacyRender: {
+        type: Boolean,
+        default: false
     }
 });
 // register emitters
@@ -23,6 +31,19 @@ const fulfillRequest = () => {
     foodRequestStore.updateFoodRequestStore(request); // put the request in the pocket
     emit('fulfillRequest'); // send the request to the parent, to tell it to navigate to the next page
 }
+
+const statusClass = (status) => {
+    switch (status) {
+        case 'Open':
+            return 'green-bg';
+        case 'In-Progress':
+            return 'yellow-bg';
+        case 'Completed':
+            return 'red-bg';
+        default:
+            return '';
+    }
+};
 </script>
 
 <template>
@@ -30,18 +51,18 @@ const fulfillRequest = () => {
         <div class="grid-item">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-info">{{ pantryRequest.order.orderItems.length + " Items at " +
-                        pantryRequest.order.PickupLocation + "." }}</h5>
+                    <h5 class="card-title text-info">{{ pantryRequest.order.orderItems.length + " Items" + (privacyRender ? "." : " at " + 
+                        pantryRequest.order.PickupLocation + ".") }}</h5>
                     <ul>
                         <li v-for="(item, index) in pantryRequest.order.orderItems" :key="item.FoodID">
                             {{ item.FoodName }}<span v-if="index !== pantryRequest.order.orderItems.length - 1">,</span><span v-else>.</span>
                         </li>
                     </ul>
-                    <div class="grid-item">
+                    <div class="grid-item d-flex justify-content-center p-1 status" :class="statusClass(pantryRequest.order.Status)">
                         <p class="card-text">Status: {{ pantryRequest.order.Status }}</p>
                     </div>
                 </div>
-                <LiftedButton text="Fulfill Request" @click="fulfillRequest" color="blue"/>
+                <LiftedButton v-if="!noButton" text="Fulfill Request" @click="fulfillRequest" color="blue"/>
             </div>
         </div>
     </div>
@@ -76,5 +97,22 @@ ul {
     list-style: none;
     padding-left: 0;
     padding: 5px;
+}
+
+.yellow-bg {
+    background-color: var(--theme-yellow);
+}
+
+.green-bg {
+    background-color: var(--theme-green);
+}
+
+.red-bg {
+    background-color: var(--theme-red);
+}
+
+.status {
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #000;
 }
 </style>

@@ -1,10 +1,15 @@
 <script setup>
-    
+import { ref, defineProps } from 'vue';
+import PantryRequestCard from '@/components/PantryRequestCard.vue';
+const props = defineProps({
+    pantryRequests: Array
+});
 </script>
 
 <template>
     <div>
-        <!-- Your template code goes here -->
+        <PantryRequestCard v-for="(item, index) in pantryRequests" :key="index"
+          :pantry-request="item" :no-button="true"  :privacy-render="true"/>
     </div>
 </template>
 
