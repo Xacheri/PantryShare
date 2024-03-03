@@ -351,6 +351,30 @@ class TestDataClass {
 		}};
 
 	}
+	static getFoodCategories()
+	{
+		return {Categories: [
+			{
+				CategoryID: 1,
+				CategoryName: "Fruits",
+			},
+			{
+				CategoryID: 2,
+				CategoryName: "Vegetables",
+			},
+			{
+				CategoryID: 3,
+				CategoryName: "Grains",
+			},
+			{
+				CategoryID: 5,
+				CategoryName: "Dairy",
+			},
+			{
+				CategoryID: 4,
+				CategoryName: "Proteins",
+			}]};
+	}
 	
 }
 
