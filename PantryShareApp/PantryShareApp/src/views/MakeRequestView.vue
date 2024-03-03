@@ -1,69 +1,66 @@
-<template>
-  <div class="container mt-5">
-    <h1>Request</h1>
-
-    <form @submit.prevent="submitRequest">
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="categoryGroup">Options</label>
-        <select v-model="selectedCategory" @change="handleSelectedCategoryChange" class="form-select" id="categoryGroup">
-          <option selected disabled>Choose Category:</option>
-          <option v-for="(category, index) in categories" :key="index" :value="index + 1">{{ category }}</option>
-        </select>
-      </div>
-
-      <div id="checkboxContainer">
-        <div v-for="(item, index) in categoryItems" :key="index" class="input-group mb-3" v-if="!isSelected(item)">
-          <input class="form-check-input" type="checkbox" :value="item" v-model="selectedItems">
-          <label class="form-check-label">{{ item }}</label>
-        </div>
-      </div>
-
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
-</template>
-
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import LiftedButton from '@/components/LiftedButton.vue';
+import { ref } from 'vue';
+const order = ref({
+    OrderID: 21,
+    UserID: 1,
+    Status: 'Open',
+    PickupLocation: '',
+    FamilySize: 1,
+    RequestorNote: '',
+    orderItems: [
+        // {
+        //     FoodID: 1,
+        //     FoodName: 'Canned Soup'
+        // }
+    ]
+});
+const newFoodItem = ref('');
 
-const categories = ["Category 1", "Category 2", "Category 3"];
-const selectedCategory = ref(null);
-const categoryItems = ref([]);
-const selectedItems = ref([]);
-const userRequestList = ref([]);
-const router = useRouter();
-
-const submitRequest = () => {
-  console.log("Selected items:", selectedItems.value);
-  userRequestList.value = userRequestList.value.concat(selectedItems.value);
-  selectedItems.value = [];
-  showConfirmation();
-};
-
-const handleSelectedCategoryChange = () => {
-  categoryItems.value = categories[selectedCategory.value - 1];
-};
-
-const removeItem = (index) => {
-  selectedItems.value.splice(index, 1);
-};
-
-const isSelected = (item) => {
-  return selectedItems.value.includes(item);
-};
-
-const showConfirmation = () => {
-  // Display confirmation message
-  alert("Request Submitted");
-  
-  // Redirect to SearchVue.vue after 2 seconds
-  setTimeout(() => {
-    router.push({ name: 'Search' });
-  }, 2000);
-};
+const removeFoodItem = (food) => {
+    const index = order.value.orderItems.indexOf(food);
+    order.value.orderItems.splice(index, 1);
+}
+const addFoodItem = () => {
+    order.value.orderItems.push({ FoodName: newFoodItem.value, FoodID: order.value.orderItems.length + 1});
+    newFoodItem.value = '';
+}
 </script>
 
+<template>
+    <div>
+        <h2>Make a Pantry Request</h2>
+        <div class="form-group">
+            <label for="familysize">Family Size</label>
+            <input type="number" class="form-control" id="familysize" v-model="order.FamilySize">
+        </div>
+        <div class="form-group">
+            <label for="loc">Pickup Location</label>
+            <input type="text" class="form-control" id="loc" v-model="order.PickupLocation">
+        </div>
+        <div class="form-group">
+            <!-- allow users to create and add food items here -->
+            <label for="food">Food Items</label>
+            <div class="d-flex align-items-center justify-content-between foodgroup" v-for="food in order.orderItems">
+                <input type="text" class="form-control" v-model="food.FoodName" disabled>
+                <LiftedButton text="Delete" color="red" @custom-click="removeFoodItem(food)"/>
+            </div>
+            <div class="d-flex align-items-center justify-content-between foodgroup">
+                <input type="text" class="form-control m-1" v-model="newFoodItem">
+                <LiftedButton text="Add" color="blue" @custom-click="addFoodItem"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="note">Leave a note about how to reach you.</label>
+            <textarea class="form-control" id="note" v-model="order.RequestorNote"></textarea>
+        </div>
+    </div>
+</template>
+
 <style scoped>
-/* Add your scoped styles here */
+/* Your component styles go here */
+.foodgroup {
+    border-radius: 10px;
+    padding: 5px;
+}
 </style>
