@@ -21,8 +21,8 @@ const quickCloseMenu = function () {
     <img src="@/assets/logo.png" @click="toggleMenu" alt="logo" :width="menuClicked ? 75 : 150" />
     <transition name="fade">
       <nav v-if="menuClicked" class="w-75" :class="navStyle">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/" @click="quickCloseMenu">Home</RouterLink>
+        <RouterLink to="/about" @click="quickCloseMenu">About</RouterLink>
         <RouterLink to="/login" @click="quickCloseMenu">Login</RouterLink>
         <RouterLink to="/register" @click="quickCloseMenu">Register</RouterLink>
         <RouterLink to="/profile" @click="quickCloseMenu">Profile</RouterLink>
@@ -45,10 +45,14 @@ nav {
   align-items: center;
   gap: 10px;
   background-color: var(--overlay-one);
-  padding: 10px;
+  padding: 0px 10px;
   border-radius: 10px;
-  margin-top: 10px;
+  margin: auto;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
 }
+
+
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.25s, transform 0.25s; /* Transition opacity and transform */
