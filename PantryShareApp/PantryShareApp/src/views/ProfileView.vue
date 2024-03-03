@@ -1,6 +1,6 @@
 <template>
   <div class="profile-container">
-    <!-- Profile Information -->
+    
     <div class="profile-info">
       <h2>Profile Information</h2>
       <div class="info-item">
@@ -21,7 +21,6 @@
       </div>
     </div>
 
-    <!-- Action Buttons -->
     <div class="action-buttons">
       <button @click="changePassword">Change Password</button>
       <button @click="editProfile">Edit Profile</button>
@@ -29,24 +28,47 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import { ref } from 'vue'
 
-const fetchUserInfo = async () => {
-  try {
-    const response = await fetch('API_ENDPOINT_HERE');
-    const data = await response.json();
-    userInfo.value = data;
-    editedUserInfo.value = { ...data };
-  } catch (error) {
-    console.error('Error fetching user information:', error);
-  }
-};
+export default {
+  setup() {
+    const userInfo = ref({
+      username: 'john_doe',
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@example.com'
+    });
 
-onMounted(fetchUserInfo);
+    // Functions for change password and edit profile remain non-working for prototype phase
+    const changePassword = () => {
+      console.log('Changing password...');
+    };
+
+    const editProfile = () => {
+      console.log('Editing profile...');
+    };
+
+    return { userInfo, changePassword, editProfile };
+  }
+}
+
+// const fetchUserInfo = async () => {
+//   try {
+//     const response = await fetch('API_ENDPOINT_HERE');
+//     const data = await response.json();
+//     userInfo.value = data;
+//     editedUserInfo.value = { ...data };
+//   } catch (error) {
+//     console.error('Error fetching user information:', error);
+//   }
+// };
+
+//onMounted(fetchUserInfo);
 </script>
 
 <style scoped>
+
 .profile-container {
   max-width: 600px;
   margin: 0 auto;
@@ -82,3 +104,4 @@ onMounted(fetchUserInfo);
   background-color: #0056b3;
 }
 </style>
+
