@@ -32,7 +32,7 @@ if(isset($_POST['action']))
     if($_POST['action'] == 'login') 
     {
         //need username and pw to login
-        if(isset($_POST['username']) && isset($_POST['password']));
+        if(isset($_POST['username']) && isset($_POST['password']))
         {
             
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -80,9 +80,9 @@ if(isset($_POST['action']))
         //get max order number and +1
         $sql = "select MAX(OrderID) from orderitems"; 
         $stmt = $db->prepare($sql);
-        $highOrderNum = $db->query($stmt)->fetchAll();
-
-        $ordernum = $highOrderNum++;
+        $highOrderNum = $stmt->fetchAll();
+        
+        $ordernum = $highOrderNum ++;
 
         //add items to orderitems. will need to add to this as we figure out how the items are being sent over via POST
         $sql = "insert into orderitems (OrderID, FoodID) values (:OrderID, :fooditem)";
@@ -127,8 +127,9 @@ if(isset($_GET['action']))
         $zipcode = filter_input(INPUT_GET, 'zipcode', FILTER_SANITIZE_SPECIAL_CHARS);
         $sql = 'select * from orders join users on orders.UserID=users.UserID where users.Location=(:zipcode) and where orders.status=1';
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':zipcode', $zipcode);
-        $qry = $db->query($stmt)->fetchAll();
+        $stmt->bindValue(':zipcode,' $zipcode);
+        $stmt->execute();
+        $qry = $stmt->fetchAll();
         echo json_encode($qry);
 
     }
@@ -139,8 +140,9 @@ if(isset($_GET['action']))
         $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         $sql = 'select * from fooditems join categories on fooditems.CategoryID=categories.CategoryID where categories.CategoryName="(:category)"';
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':category', $category);
-        $qry = $db->query($stmt)->fetchAll();
+        $stmt->bindValue(':category,' $category);
+        $stmt->execute();
+        $qry = $stmt->fetchAll();
         echo json_encode($qry); 
     }
 
@@ -150,7 +152,10 @@ if(isset($_GET['action']))
     {
         $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         $sql = 'select * from categories';
+        $sql = 'select * from categories';
         $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $qry = $stmt->fetchAll();
         $stmt->execute();
         $qry = $stmt->fetchAll();
         echo json_encode($qry); 
@@ -163,7 +168,8 @@ if(isset($_GET['action']))
         $sql = 'select * from users where UserID=(:userid)';
         $stmt->bindValue(':userid', $UserID);
         $stmt = $db->prepare($sql);
-        $qry = $db->query($stmt)->fetchAll();
+        $stmt->execute();
+        $qry = $stmt->fetchAll();
         echo json_encode($qry); 
     }
 
