@@ -47,6 +47,11 @@ const router = createRouter({
 			name: "servicedetails",
 			component: () => import("../views/ServiceDetailView.vue"),
 		},
+		{
+			path: "/fulfillrequest",
+			name: "fulfillrequest",
+			component: () => import("../views/FulfillRequestView.vue"),
+		}
 	],
 });
 

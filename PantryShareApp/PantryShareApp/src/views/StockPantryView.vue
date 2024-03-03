@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router';
 import PantryRequestCard from '@/components/PantryRequestCard.vue'
 import TestDataClass from '@/classes/TestDataClass';
 
@@ -11,7 +12,6 @@ const getPantryRequests = function () {
   try {
     pantryRequests.value = TestDataClass.getLocalPantryRequests();
     console.log('Success:', pantryRequests.value);
-    // do stuff with the data (like update the pantryRequests variable)
   } catch (error) {
     console.error('Error:', error);
   }

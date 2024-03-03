@@ -1,5 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { defineProps } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 // register props
 const props = defineProps({
@@ -12,24 +15,7 @@ const props = defineProps({
 
 const fulfillRequest = function(){
     console.log('Fulfilling request');
-    // // Call a REST API to fulfill the request
-    // try {
-    //     const response = await fetch('http://localhost/api/fulfillRequest', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             orderID: pantryRequest.order.OrderID
-    //         })
-    //     });
-
-    //     const data = await response.json();
-    //     console.log('Success:', data);
-    //     // do stuff with the data (like redirect to another page)
-    // } catch (error) {
-    //     console.error('Error:', error);
-    // }
+    router.push('/fulfillrequest');
 }
 
 </script>
