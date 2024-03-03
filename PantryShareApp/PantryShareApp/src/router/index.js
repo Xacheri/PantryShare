@@ -48,6 +48,11 @@ const router = createRouter({
 			component: () => import("../views/ServiceDetailView.vue"),
 		},
 		{
+			path: "/profile",
+			name: "profile",
+			component: () => import("../views/ProfileView.vue"),
+		},
+		{
 			path: "/fulfillrequest",
 			name: "fulfillrequest",
 			component: FulfillRequestView
