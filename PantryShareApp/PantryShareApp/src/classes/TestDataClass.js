@@ -1,5 +1,5 @@
 class TestDataClass {
-    static getLocalRequests() {
+    static getLocalPantryRequests() {
         return [{
             order: {
               OrderID: 1,
