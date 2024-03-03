@@ -128,6 +128,7 @@ if(isset($_GET['action']))
         $sql = 'select * from orders join users on orders.UserID=users.UserID where users.Location=(:zipcode) and where orders.status=1';
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':zipcode,' $zipcode);
+        $stmt->execute();
         $qry = $stmt->fetchAll();
         echo json_encode($qry);
 
@@ -140,6 +141,7 @@ if(isset($_GET['action']))
         $sql = 'select * from fooditems join categories on fooditems.CategoryID=categories.CategoryID where categories.CategoryName="(:category)"';
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':category,' $category);
+        $stmt->execute();
         $qry = $stmt->fetchAll();
         echo json_encode($qry); 
     }
@@ -150,6 +152,7 @@ if(isset($_GET['action']))
         $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
         $sql = 'select * from categories';
         $stmt = $db->prepare($sql);
+        $stmt->execute();
         $qry = $stmt->fetchAll();
         echo json_encode($qry); 
     }
@@ -161,6 +164,7 @@ if(isset($_GET['action']))
         $sql = 'select * from users where UserID=(:userid)';
         $stmt->bindValue(':userid,' $UserID);
         $stmt = $db->prepare($sql);
+        $stmt->execute();
         $qry = $stmt->fetchAll();
         echo json_encode($qry); 
     }
