@@ -43,22 +43,23 @@ const login = async function(){
 </script>
 
 <template>
-    <div>
-        <h1>Login</h1>
-        <!-- We dont actually use post 
-            since we call a REST API to login
-            and we dont want to refresh the page
-         -->
-        <form>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" v-model="username">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" v-model="password">
-            <!-- Use the @click.prevent to bind a click event AND prevent default form behavior (reloading the page) -->
-            <button @click.prevent="login">Login</button>
-        </form>
+    <div class="container mt-5">
+      <h1>Login</h1>
+      <form>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" name="username" v-model="username">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" v-model="password">
+        </div>
+        <button @click.prevent="login" class="btn btn-primary d-block mx-auto mt-3">Login</button>
+
+      </form>
     </div>
-</template>
+  </template>
+  
 <style scoped>
 
 </style>
