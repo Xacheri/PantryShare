@@ -199,6 +199,46 @@ class TestDataClass {
 						],
 					},
 				},
+				{
+					order: {
+						OrderID: 4,
+						UserID: 4,
+						FamilySize: 5,
+						Status: "In-Progress",
+						orderItems: [
+							{
+								FoodID: 6,
+								FoodName: "Grapes",
+								CategoryID: 1,
+								CategoryName: "Fruits",
+							},
+							{
+								FoodID: 13,
+								FoodName: "Bell Peppers",
+								CategoryID: 2,
+								CategoryName: "Vegetables",
+							},
+							{
+								FoodID: 15,
+								FoodName: "Cabbage",
+								CategoryID: 2,
+								CategoryName: "Vegetables",
+							},
+							{
+								FoodID: 23,
+								FoodName: "Yogurt",
+								CategoryID: 5,
+								CategoryName: "Dairy",
+							},
+							{
+								FoodID: 17,
+								FoodName: "Turkey",
+								CategoryID: 4,
+								CategoryName: "Proteins",
+							},
+						],
+					},
+				},
 			],
 			request_orders: [
 				{
@@ -244,6 +284,47 @@ class TestDataClass {
 						],
 					},
 				},
+                {
+                    order: {
+                        OrderID: 5,
+                        UserID: 5,
+                        FamilySize: 4,
+                        Status: "Open",
+                        PickupLocation: "Walmart Supercenter on E. Kearney St",
+                        orderItems: [
+                            {
+                                FoodID: 4,
+                                FoodName: "Grapes",
+                                CategoryID: 1,
+                                CategoryName: "Fruits",
+                            },
+                            {
+                                FoodID: 7,
+                                FoodName: "Bell Peppers",
+                                CategoryID: 2,
+                                CategoryName: "Vegetables",
+                            },
+                            {
+                                FoodID: 13,
+                                FoodName: "Cauliflower",
+                                CategoryID: 2,
+                                CategoryName: "Vegetables",
+                            },
+                            {
+                                FoodID: 19,
+                                FoodName: "Milk",
+                                CategoryID: 5,
+                                CategoryName: "Dairy",
+                            },
+                            {
+                                FoodID: 25,
+                                FoodName: "Salmon",
+                                CategoryID: 4,
+                                CategoryName: "Proteins",
+                            },
+                        ],
+                    },
+                },
 			],
 		};
 	}
