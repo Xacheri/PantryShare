@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useFoodRequestStore } from '@/stores/foodrequest';
 import { useRouter } from 'vue-router';
+import LiftedButton from '@/components/LiftedButton.vue';
 const router = useRouter();
 const contact = ref('');
 const pantryRequest = useFoodRequestStore();
@@ -22,7 +23,7 @@ const submitContact = function () {
 </script>
 
 <template>
-    <div class="d-flex flex-column align-items-center">
+    <div class="d-flex flex-column align-items-center mt-5 overlay fit-content">
         <h1>Request Fulfilled!</h1>
         <p>Food Request ID: {{ pantryRequest.foodrequest.order.OrderID }}</p>
         <p>Pickup Location: {{ pantryRequest.foodrequest.order.PickupLocation }}</p>
@@ -34,15 +35,15 @@ const submitContact = function () {
                 </li>
             </ul>
         </div>
-        <div class="overlay p-2 w-75">
+        <div class="overlay-two p-2 w-50 note m-1">
             <h2>Note from Requestor:</h2>
             <p>{{ pantryRequest.foodrequest.order.RequestorNote }}</p>
         </div>
-        <div>
+        <div class="d-flex flex-column w-75 m-1 p-1">
             <h2>Submit a point of contact</h2>
             <span>(Email or Phone Number please)</span><br>
             <input type="text" v-model="contact" class="m-1" />
-            <button @click="submitContact" class="btn btn-primary m-1">Submit</button>
+            <LiftedButton text="Submit Contact" color="blue" @custom-click="submitContact"/>
         </div>
     </div>
 </template>
@@ -51,5 +52,25 @@ const submitContact = function () {
 .overlay {
     background-color: var(--overlay-one);
     border-radius: 20px;
+    padding: 20px;
+    box-shadow: 5px 5px 10px var(--theme-grey);
+}
+
+.overlay-two {
+    background-color: var(--theme-grey);
+    border-radius: 20px;
+    box-shadow: inset 10px 10px 15px var(--overlay-three);
+}
+
+.note {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--theme-grey);
+    box-shadow: 5px 5px 5px var(--theme-grey);
+}
+
+.fit-content {
+    max-width: fit-content !important;
+    margin: 0 auto;
 }
 </style>

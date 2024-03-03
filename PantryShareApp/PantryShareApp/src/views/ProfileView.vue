@@ -1,7 +1,6 @@
 <template>
-  <div class="profile-container">
-    
-    <div class="profile-info">
+  <div class="profile-container mt-5">
+    <div class="profile-info d-flex flex-column">
       <h2>Profile Information</h2>
       <div class="info-item">
         <span class="label">Username:</span>
@@ -22,49 +21,44 @@
     </div>
 
     <div class="action-buttons">
-      <button @click="changePassword">Change Password</button>
-      <button @click="editProfile">Edit Profile</button>
+      <LiftedButton text="Change Password" color="blue" @custom-click="changePassword"/>
+      <LiftedButton text="Edit Profile" color="yellow"@custom-click="editProfile"/>
+      <LiftedButton text="Logout" color="red"/>
     </div>
   </div>
 </template>
 
 <script>
 import { ref } from 'vue'
+import LiftedButton from '@/components/LiftedButton.vue';
 
 export default {
-  setup() {
-    const userInfo = ref({
-      username: 'john_doe',
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john@example.com'
-    });
+    components: {
+        LiftedButton // Add the LiftedButton component to the components section
+    },
+    setup() {
 
-    // Functions for change password and edit profile remain non-working for prototype phase
-    const changePassword = () => {
-      console.log('Changing password...');
-    };
+        const userInfo = ref({
+            username: 'john_doe',
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'john@example.com'
+        });
 
-    const editProfile = () => {
-      console.log('Editing profile...');
-    };
+        // Functions for change password and edit profile remain non-working for prototype phase
+        const changePassword = () => {
+            console.log('Changing password...');
+        };
 
-    return { userInfo, changePassword, editProfile };
-  }
+        const editProfile = () => {
+            console.log('Editing profile...');
+        };
+
+
+
+        return { userInfo, changePassword, editProfile };
+    }
 }
-
-// const fetchUserInfo = async () => {
-//   try {
-//     const response = await fetch('API_ENDPOINT_HERE');
-//     const data = await response.json();
-//     userInfo.value = data;
-//     editedUserInfo.value = { ...data };
-//   } catch (error) {
-//     console.error('Error fetching user information:', error);
-//   }
-// };
-
-//onMounted(fetchUserInfo);
 </script>
 
 <style scoped>

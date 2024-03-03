@@ -1,6 +1,7 @@
 <script setup>
 import { toRefs } from 'vue';
 import { useFoodRequestStore } from '@/stores/foodrequest';
+import LiftedButton from '@/components/LiftedButton.vue';
 // register props
 const props = defineProps({
     pantryRequest: {
@@ -40,7 +41,7 @@ const fulfillRequest = () => {
                         <p class="card-text">Status: {{ pantryRequest.order.Status }}</p>
                     </div>
                 </div>
-                <button class="btn btn-primary m-1" @click="fulfillRequest()">Fulfill Request</button>
+                <LiftedButton text="Fulfill Request" @click="fulfillRequest" color="blue"/>
             </div>
         </div>
     </div>

@@ -47,9 +47,9 @@
 </script>
 
 <template>
-    <div class="d-flex flex-column align-items-center" class="container mt-5">
+    <div class="d-flex flex-column align-items-center container mt-5">
       <h1 class="mb-4">Register</h1>
-      <form class="d-flex flex-column align-items-center" @submit.prevent="register" class="needs-validation">
+      <form class="d-flex flex-column align-items-center needs-validation" @submit.prevent="register">
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           <input type="text" id="username" class="form-control" v-model="username" required>

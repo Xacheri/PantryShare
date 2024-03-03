@@ -9,6 +9,11 @@ const toggleMenu = function () {
   menuClicked.value = !menuClicked.value;
   navStyle.value = menuClicked.value ? "fade-inflate-fast" : "fade-deflate-fast";
 }
+
+const quickCloseMenu = function () {
+  menuClicked.value = false;
+  navStyle.value = "hidden";
+}
 </script>
 
 <template>
@@ -18,13 +23,13 @@ const toggleMenu = function () {
       <nav v-if="menuClicked" class="w-75" :class="navStyle">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
-        <RouterLink to="/profile">Profile</RouterLink>
-        <RouterLink to="/search">Search</RouterLink>
-        <RouterLink to="/stockthepantry">Stock the Pantry</RouterLink>
-        <RouterLink to="/makerequest">Make Request</RouterLink>
-        <RouterLink to="/servicedetails">Service Details</RouterLink>
+        <RouterLink to="/login" @click="quickCloseMenu">Login</RouterLink>
+        <RouterLink to="/register" @click="quickCloseMenu">Register</RouterLink>
+        <RouterLink to="/profile" @click="quickCloseMenu">Profile</RouterLink>
+        <RouterLink to="/search" @click="quickCloseMenu">Search</RouterLink>
+        <RouterLink to="/stockthepantry" @click="quickCloseMenu">Stock the Pantry</RouterLink>
+        <RouterLink to="/makerequest" @click="quickCloseMenu">Make Request</RouterLink>
+        <RouterLink to="/servicedetails" @click="quickCloseMenu">Service Details</RouterLink>
       </nav>
     </transition>
   </header>
@@ -46,9 +51,14 @@ nav {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 1s, transform 1s; /* Transition opacity and transform */
+  transition: opacity 0.25s, transform 0.25s; /* Transition opacity and transform */
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+.hidden {
+  opacity: 0;
+  transition: none !important;
 }
 </style>
