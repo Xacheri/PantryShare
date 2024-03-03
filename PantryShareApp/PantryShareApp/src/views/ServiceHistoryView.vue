@@ -8,7 +8,7 @@ import TestDataClass from '@/classes/TestDataClass';
 const options = {
     tabs: [
         { label: 'Service History', value: 'service-history' },
-        { label: 'Service Request', value: 'service-request' }
+        { label: 'Service Request History', value: 'service-request' }
     ]
 };
 const selectedValue = ref('service-history');
