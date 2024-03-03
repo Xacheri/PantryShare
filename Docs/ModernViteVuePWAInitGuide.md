@@ -58,11 +58,14 @@ Then run `npm run build` to create your app in the `dist/` folder.
 
 ## Running the Build from XAMPP
 
-A deployed PWA needs to be deployed at the exact root of the web server. This is because there is source-mapping going on behind the scenes in the build that makes that assumption. There are ways to adjust this mapping, but I am lazy. The `htdocs` folder in XAMPP IS the root folder of an Apache web server. So if you delete everything out of that, and paste the contents of your `dist` folder into the `htdocs` folder, you can run the web app that way. You can still have an API running out of an `htdocs/api/` folder in there if you want. Note that visiting your API endpoints in the browser won't work, since it will think you're accessing a weird app view, but fetch requests and curl requests still work.
+A deployed PWA needs to be deployed at the exact root of the web server. This is because there is source-mapping going on behind the scenes in the build that makes that assumption. There are ways to adjust this mapping, but I am lazy. The `htdocs` folder in XAMPP IS the root folder of an Apache web server. So if you delete everything out of that, and paste the contents of your `dist` folder into the `htdocs` folder, you can run the web app that way. You can still have an API running out of an `htdocs/api/` folder in there if you want. Note that visiting your API endpoints in the browser won't work, since it will think you're accessing a weird app view, but requests from outside the app still work for endpoint testing.
 
 ## Installing the PWA
 
-Once you clear your cache, and run from localhost, you will see the app! If you serve to the network, you can do the same by visiting the site from your phone. To install (in Edge on a computer) go to the three dots menu in the browser, hover over Apps > and you should see an Install App button! Some browsers are better at detecting PWAs in general, and if we want to fine-tune our manifest file to make all browsers like us, we can.
+Once you clear your cache, and run from localhost, you will see the app! If you serve to the network |npm run dev -- --host| you can do the same by visiting the site from your phone. To install (in Edge on a computer) go to the three dots menu in the browser, hover over Apps > and you should see an Install App button! Some browsers are better at detecting PWAs in general, and if we want to fine-tune our manifest file to make all browsers like us, we can.
+
+## Distributing the PWA
+Serve the build from a server where it can sit directly on the Document Root, and be accessed with HTTPS://. Client-side routing means you can do it from GitHub Pages!
 
 ## THE IMPORTANT BIT
 
