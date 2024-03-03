@@ -49,24 +49,30 @@ const statusClass = (status) => {
 <template>
     <div class="grid-container p-1">
         <div class="grid-item">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title text-info">{{ pantryRequest.order.orderItems.length + " Items" + (privacyRender ? "." : " at " + 
-                        pantryRequest.order.PickupLocation + ".") }}</h5>
-                    <ul>
-                        <li v-for="(item, index) in pantryRequest.order.orderItems" :key="item.FoodID">
-                            {{ item.FoodName }}<span v-if="index !== pantryRequest.order.orderItems.length - 1">,</span><span v-else>.</span>
-                        </li>
-                    </ul>
-                    <div class="grid-item d-flex justify-content-center p-1 status" :class="statusClass(pantryRequest.order.Status)">
+            <div class="card p-1">
+                <div class="d-flex justify-content-between align-items-center flex-wrap m-2">
+                    <h5 class="card-title text-info">{{ pantryRequest.order.orderItems.length + " Items" +
+                        (privacyRender ? "." : " at " +
+                            pantryRequest.order.PickupLocation + ".") }}</h5>
+                    <div class="grid-item d-flex justify-content-center p-1 m-1 status"
+                        :class="statusClass(pantryRequest.order.Status)">
                         <p class="card-text">Status: {{ pantryRequest.order.Status }}</p>
                     </div>
                 </div>
-                <LiftedButton v-if="!noButton" text="Fulfill Request" @click="fulfillRequest" color="blue"/>
+                <div class="w-75 m-1">
+                    <ul class="p-1">
+                        <li v-for="(item, index) in pantryRequest.order.orderItems" :key="item.FoodID">
+                            {{ item.FoodName }}<span
+                                v-if="index !== pantryRequest.order.orderItems.length - 1">,</span><span v-else>.</span>
+                        </li>
+                    </ul>
+                </div>
+                <LiftedButton v-if="!noButton" text="Fulfill Request" @click="fulfillRequest" color="blue" />
             </div>
         </div>
     </div>
 </template>
+
 <style scoped>
 /* Your component's CSS styles go here */
 .card {
@@ -75,6 +81,7 @@ const statusClass = (status) => {
     border: 1px solid #000;
     border-radius: 10px;
     box-shadow: 5px 5px 5px #000;
+    min-width: fit-content;
 }
 
 .card-text {
@@ -114,5 +121,10 @@ ul {
 .status {
     border-radius: 10px;
     box-shadow: 5px 5px 5px #000;
+    min-width: fit-content;
+}
+
+.status p {
+    text-wrap: none;
 }
 </style>
