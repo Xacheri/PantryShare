@@ -23,27 +23,28 @@ const submitContact = function () {
 </script>
 
 <template>
-    <div class="d-flex flex-column align-items-center mt-5 overlay fit-content">
-        <h1>Request Fulfilled!</h1>
+    <h1>Request Fulfilled!</h1>
+    <div class="m-5 fit-content d-flex flex-column align-items-start">
         <p>Food Request ID: {{ pantryRequest.foodrequest.order.OrderID }}</p>
         <p>Pickup Location: {{ pantryRequest.foodrequest.order.PickupLocation }}</p>
         <p>Food Request Status: {{ pantryRequest.foodrequest.order.Status }}</p>
-        <div class="d-flex align-items-center">
+        <div class="card d-flex align-items-start w-75 overlay">
             <p>Food Request Items:</p>
-            <ul>
-                <li v-for="(item, index) in pantryRequest.foodrequest.order.orderItems" :key="index">{{ item.FoodName }}
+            <ul class="d-flex flex-wrap justify-content-center list-style-none">
+                <li class="p-2" v-for="(item, index) in pantryRequest.foodrequest.order.orderItems" :key="index">{{
+            item.FoodName }}
                 </li>
             </ul>
         </div>
-        <div class="overlay-two p-2 w-50 note m-1">
+        <div class="card mt-3 d-flex align-items-center w-75 overlay">
             <h2>Note from Requestor:</h2>
             <p>{{ pantryRequest.foodrequest.order.RequestorNote }}</p>
         </div>
-        <div class="d-flex flex-column w-75 m-1 p-1">
+        <div class="d-flex flex-column w-100 m-1 p-1">
             <h2>Submit a point of contact</h2>
             <span>(Email or Phone Number please)</span><br>
             <input type="text" v-model="contact" class="m-1" />
-            <LiftedButton text="Submit Contact" color="blue" @custom-click="submitContact"/>
+            <LiftedButton text="Submit Contact" color="blue" @custom-click="submitContact" />
         </div>
     </div>
 </template>
@@ -54,6 +55,25 @@ const submitContact = function () {
     border-radius: 20px;
     padding: 20px;
     box-shadow: 5px 5px 10px var(--theme-grey);
+}
+
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    list-style: none;
+    padding-left: 0;
+    padding: 5px;
+
 }
 
 .overlay-two {
