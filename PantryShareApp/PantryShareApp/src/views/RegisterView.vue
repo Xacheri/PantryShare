@@ -15,7 +15,7 @@
         console.log('Email: ', email.value);
         console.log('Password: ', password.value);
         console.log('Confirmed Password: ', confirmPassword.value);
-
+        
         // try {
         //     const response = await fetch('http://localhost/api/register', {
         //         method: 'POST', // Use POST method for registration
@@ -47,9 +47,9 @@
 </script>
 
 <template>
-    <div>
+    <div class="d-flex flex-column align-items-center">
         <h1>Register</h1>
-        <form>
+        <form class="d-flex flex-column align-items-center">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" v-model="username">
             

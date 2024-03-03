@@ -1,23 +1,27 @@
 <script setup>
-import { defineProps } from 'vue';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
+import { toRefs } from 'vue';
+import { useFoodRequestStore } from '@/stores/foodrequest';
 // register props
 const props = defineProps({
     pantryRequest: {
         type: Object,
         required: true
     }
-}
-)
+});
+// register emitters
+const emit = defineEmits(['fulfillRequest']);
 
-const fulfillRequest = function(){
-    console.log('Fulfilling request');
-    router.push('/fulfillrequest');
-}
+// grab state
+const foodRequestStore = useFoodRequestStore();
+const { pantryRequest } = toRefs(props);
 
+const fulfillRequest = () => {
+    const propRequest = pantryRequest.value;
+    const request = propRequest;
+    request.order.Status = "In Progress";
+    foodRequestStore.updateFoodRequestStore(request); // put the request in the pocket
+    emit('fulfillRequest'); // send the request to the parent, to tell it to navigate to the next page
+}
 </script>
 
 <template>
@@ -36,12 +40,11 @@ const fulfillRequest = function(){
                         <p class="card-text">Status: {{ pantryRequest.order.Status }}</p>
                     </div>
                 </div>
-                <button class="btn btn-primary m-1" @click="fulfillRequest">Fulfill Request</button>
+                <button class="btn btn-primary m-1" @click="fulfillRequest()">Fulfill Request</button>
             </div>
         </div>
     </div>
 </template>
-
 <style scoped>
 /* Your component's CSS styles go here */
 .card {

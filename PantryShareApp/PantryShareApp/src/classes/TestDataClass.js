@@ -7,6 +7,7 @@ class TestDataClass {
               FamilySize: 3,
               Status: "Open",
               PickupLocation: "Krogers on S. Glenstone",
+              RequestorNote: "Email me at louis@gmail.com to arrange a meetup time.",
               orderItems: [
                 {
                   FoodID: 1,
@@ -55,7 +56,8 @@ class TestDataClass {
               UserID: 2,
               FamilySize: 4,
               Status: "Open",
-              PickupLocation: "Walmart Supercenter on W. Sunshine St",
+              PickupLocation: "SW Springfield",
+              RequestorNote: "Leave it at my doorstep at 124 s Barcliff Ave. Thanks!",
               orderItems: [
                 {
                   FoodID: 5,
@@ -105,6 +107,7 @@ class TestDataClass {
               FamilySize: 2,
               Status: "Open",
               PickupLocation: "Target on E. Independence St",
+              RequestorNote: "Call me at 417-555-5555 to arrange a meetup time. Thanks!",
               orderItems: [
                 {
                   FoodID: 3,
@@ -148,6 +151,7 @@ class TestDataClass {
             }
           }];
         }
+
 }
 
 export default TestDataClass;
