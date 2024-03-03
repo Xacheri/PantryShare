@@ -26,10 +26,12 @@
   
   <script setup>
   import { ref } from 'vue'
-  
-  const requestLocation = ref("Your request location");
-  const requestStatus = ref("Pending"); // Assuming the status is initially pending
-  const requestedItems = ref(["Item 1", "Item 2", "Item 3"]); // Sample requested items
+  import OrderStatus from '@/classes/OrderStatus'
+
+  const statusObject = OrderStatus.getOrderStatus();
+  const requestLocation = ref("65804");
+  const requestStatus = ref("Open"); // Assuming the status is initially pending
+  const requestedItems = ref(["Apples", "Onions", "Potatoes", "Milk", "Fish"]); // Sample requested items
   const selectedItems = ref(Array(requestedItems.value.length).fill(false)); // Initialize all items as unchecked
   
   const fulfillRequest = () => {

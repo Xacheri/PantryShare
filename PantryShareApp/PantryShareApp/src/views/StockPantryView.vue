@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import PantryRequestCard from '@/components/PantryRequestCard.vue'
-import TestDataClass from '@/classes/TestDataClass';
+import TestDataClass from '@/classes/TestDataClass'
 
 const pantryRequests = ref([]);
 
