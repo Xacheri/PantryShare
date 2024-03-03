@@ -1,5 +1,6 @@
 <script setup>
 import LiftedButton from '@/components/LiftedButton.vue';
+import ConfirmModal from '@/components/ConfirmModal.vue';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 const router = useRouter();
@@ -18,6 +19,7 @@ const order = ref({
     ]
 });
 const newFoodItem = ref('');
+const showModal = ref(false);
 const removeFoodItem = (food) => {
     const index = order.value.orderItems.indexOf(food);
     order.value.orderItems.splice(index, 1);
@@ -35,6 +37,9 @@ const submitRequest = () => {
 
 <template>
     <div>
+        <ConfirmModal v-if="showModal" @confirm="submitRequest" @cancel="() => showModal = false">
+            <p>Are you sure you want to make this request?</p>
+        </ConfirmModal>
         <h2>Make a Pantry Request</h2>
         <div class="form-group">
             <label for="familysize">Family Size</label>
@@ -61,7 +66,7 @@ const submitRequest = () => {
             <textarea class="form-control" id="note" v-model="order.RequestorNote"></textarea>
         </div>
         <div class="d-flex justify-content-center mt-3">
-          <LiftedButton text="Submit Request" color="blue" @custom-click="submitRequest"/>
+          <LiftedButton text="Submit Request" color="blue" @custom-click="showModal = true"/>
         </div>
     </div>
 </template>
