@@ -20,7 +20,6 @@
         </div>
       </div>
   
-      <!-- Fulfilling Request Button -->
       <button @click="fulfillRequest">Fulfill Request</button>
     </div>
   </template>

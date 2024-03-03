@@ -1,3 +1,45 @@
+<template>
+    <div class="container mt-5">
+        <h1>Register</h1>
+        <form>
+            <div class="mb-3">
+                <label for="username">Username</label>
+                <div><input type="text" id="username" name="username" v-model="username"></div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="firstName">First Name</label>
+                <div><input type="text" id="firstName" name="firstName" v-model="fName"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="lastName">Last Name</label>
+                <div><input type="text" id="lastName" name="lastName" v-model="lName"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <div><input type="email" id="email" name="email" v-model="email"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password">Password</label>
+                <div><input type="password" id="password" name="password" v-model="password"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="confirmPassword">Confirm Password</label>
+                <div><input type="password" id="confirmPassword" name="confirmPassword" v-model="confirmPassword"></div>
+            </div>
+
+            <div class="mb-3">
+                <button @click.prevent="register" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+    
+</template>
+
 <script setup>
     import { ref } from 'vue'
 
@@ -45,34 +87,6 @@
         // }
     }
 </script>
-
-<template>
-    <div>
-        <h1>Register</h1>
-        <form>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" v-model="username">
-            
-            <label for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" v-model="fName">
-            
-            <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" v-model="lName">
-            
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" v-model="email">
-            
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" v-model="password">
-            
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" v-model="confirmPassword">
-            
-            <button @click.prevent="register">Register</button>
-        </form>
-    </div>
-    
-</template>
 
 <style scoped>
 

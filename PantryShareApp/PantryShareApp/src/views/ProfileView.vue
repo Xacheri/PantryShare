@@ -32,18 +32,20 @@
 <script setup>
 import { ref } from 'vue'
 
-const fetchUserInfo = async () => {
-  try {
-    const response = await fetch('API_ENDPOINT_HERE');
-    const data = await response.json();
-    userInfo.value = data;
-    editedUserInfo.value = { ...data };
-  } catch (error) {
-    console.error('Error fetching user information:', error);
-  }
+const userInfo = ref({
+  username: 'example_user',
+  firstName: 'John',
+  lastName: 'Doe',
+  email: 'john.doe@example.com'
+});
+
+const changePassword = () => {
+  // Logic to handle changing password
 };
 
-onMounted(fetchUserInfo);
+const editProfile = () => {
+  // Logic to handle editing profile
+};
 </script>
 
 <style scoped>
