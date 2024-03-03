@@ -1,7 +1,8 @@
 <script setup>
-import { toRefs } from 'vue';
+import { toRefs, ref } from 'vue';
 import { useFoodRequestStore } from '@/stores/foodrequest';
 import LiftedButton from '@/components/LiftedButton.vue';
+import ConfirmModal from '@/components/ConfirmModal.vue';
 // register props
 const props = defineProps({
     pantryRequest: {
@@ -19,7 +20,7 @@ const props = defineProps({
 });
 // register emitters
 const emit = defineEmits(['fulfillRequest']);
-
+const showModal = ref(false);
 // grab state
 const foodRequestStore = useFoodRequestStore();
 const { pantryRequest } = toRefs(props);
@@ -27,8 +28,13 @@ const { pantryRequest } = toRefs(props);
 const fulfillRequest = () => {
     const propRequest = pantryRequest.value;
     const request = propRequest;
+    // are you sure you want to do this?
+
+
+
     request.order.Status = "In Progress";
     foodRequestStore.updateFoodRequestStore(request); // put the request in the pocket
+    showModal.value = false;
     emit('fulfillRequest'); // send the request to the parent, to tell it to navigate to the next page
 }
 
@@ -48,6 +54,9 @@ const statusClass = (status) => {
 
 <template>
     <div class="grid-container p-1">
+        <ConfirmModal v-if="showModal" @confirm="fulfillRequest" @cancel="() => showModal = false">
+            <p>Are you sure you want to fulfill this request?</p>
+        </ConfirmModal>
         <div class="grid-item">
             <div class="card p-1">
                 <div class="d-flex justify-content-between align-items-center flex-wrap m-2">
@@ -67,7 +76,7 @@ const statusClass = (status) => {
                         </li>
                     </ul>
                 </div>
-                <LiftedButton v-if="!noButton" text="Fulfill Request" @click="fulfillRequest" color="blue" />
+                <LiftedButton v-if="!noButton" text="Fulfill Request" @click="showModal = true" color="blue" />
             </div>
         </div>
     </div>
