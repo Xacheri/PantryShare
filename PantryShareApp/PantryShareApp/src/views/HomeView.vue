@@ -5,7 +5,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 <template>
   <main>
     <h1>About PantryShare</h1>
-    <p>PantryShare is a revolutionary app designed to tackle food insecurity in the 21st century. With the slogan "Food Security For the 21st Century," PantryShare is committed to creating a digital peer-to-peer food bank network that connects individuals and families in need with surplus food resources within their communities.</p>
+    <p>PantryShare is a revolutionary app designed to tackle food insecurity in the 21st century. PantryShare is committed to creating a digital peer-to-peer food bank network that connects individuals and families in need with surplus food resources within their communities.</p>
 
     <h2>Our Mission</h2>
     <p>At PantryShare, our mission is to combat hunger and promote food security by harnessing the power of technology to facilitate the sharing of surplus food resources among community members.</p>
