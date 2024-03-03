@@ -1,45 +1,3 @@
-<template>
-    <div class="container mt-5">
-        <h1>Register</h1>
-        <form>
-            <div class="mb-3">
-                <label for="username">Username</label>
-                <div><input type="text" id="username" name="username" v-model="username"></div>
-            </div>
-            
-            <div class="mb-3">
-                <label for="firstName">First Name</label>
-                <div><input type="text" id="firstName" name="firstName" v-model="fName"></div>
-            </div>
-
-            <div class="mb-3">
-                <label for="lastName">Last Name</label>
-                <div><input type="text" id="lastName" name="lastName" v-model="lName"></div>
-            </div>
-
-            <div class="mb-3">
-                <label for="email">Email</label>
-                <div><input type="email" id="email" name="email" v-model="email"></div>
-            </div>
-
-            <div class="mb-3">
-                <label for="password">Password</label>
-                <div><input type="password" id="password" name="password" v-model="password"></div>
-            </div>
-
-            <div class="mb-3">
-                <label for="confirmPassword">Confirm Password</label>
-                <div><input type="password" id="confirmPassword" name="confirmPassword" v-model="confirmPassword"></div>
-            </div>
-
-            <div class="mb-3">
-                <button @click.prevent="register" class="btn btn-primary">Register</button>
-            </div>
-        </form>
-    </div>
-    
-</template>
-
 <script setup>
     import { ref } from 'vue'
 
@@ -87,6 +45,39 @@
         // }
     }
 </script>
+
+<template>
+    <div class="container mt-5">
+      <h1 class="mb-4">Register</h1>
+      <form @submit.prevent="register" class="needs-validation">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" id="username" class="form-control" v-model="username" required>
+        </div>
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" id="firstName" class="form-control" v-model="fName" required>
+        </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" id="lastName" class="form-control" v-model="lName" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-control" v-model="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" class="form-control" v-model="password" required>
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" id="confirmPassword" class="form-control" v-model="confirmPassword" required>
+        </div>
+        <button type="submit" class="btn btn-primary d-block mx-auto mt-3">Register</button>
+      </form>
+    </div>
+  </template>
 
 <style scoped>
 
