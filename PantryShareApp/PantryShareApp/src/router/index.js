@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-
+import FulfillRequestView from "../views/FulfillRequestView.vue";
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
 	routes: [
@@ -45,8 +45,18 @@ const router = createRouter({
 		{
 			path: "/servicedetails",
 			name: "servicedetails",
-			component: () => import("../views/ServiceDetailView.vue"),
+			component: () => import("../views/ServiceHistoryView.vue"),
 		},
+		{
+			path: "/profile",
+			name: "profile",
+			component: () => import("../views/ProfileView.vue"),
+		},
+		{
+			path: "/fulfillrequest",
+			name: "fulfillrequest",
+			component: FulfillRequestView
+		}
 	],
 });
 

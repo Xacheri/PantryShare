@@ -15,7 +15,7 @@
         console.log('Email: ', email.value);
         console.log('Password: ', password.value);
         console.log('Confirmed Password: ', confirmPassword.value);
-
+        
         // try {
         //     const response = await fetch('http://localhost/api/register', {
         //         method: 'POST', // Use POST method for registration
@@ -47,32 +47,37 @@
 </script>
 
 <template>
-    <div>
-        <h1>Register</h1>
-        <form>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" v-model="username">
-            
-            <label for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" v-model="fName">
-            
-            <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" v-model="lName">
-            
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" v-model="email">
-            
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" v-model="password">
-            
-            <label for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" v-model="confirmPassword">
-            
-            <button @click.prevent="register">Register</button>
-        </form>
+    <div class="d-flex flex-column align-items-center container mt-5">
+      <h1 class="mb-4">Register</h1>
+      <form class="d-flex flex-column align-items-center needs-validation" @submit.prevent="register">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" id="username" class="form-control" v-model="username" required>
+        </div>
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" id="firstName" class="form-control" v-model="fName" required>
+        </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" id="lastName" class="form-control" v-model="lName" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-control" v-model="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" class="form-control" v-model="password" required>
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" id="confirmPassword" class="form-control" v-model="confirmPassword" required>
+        </div>
+        <button type="submit" class="btn btn-primary d-block mx-auto mt-3">Register</button>
+      </form>
     </div>
-    
-</template>
+  </template>
 
 <style scoped>
 

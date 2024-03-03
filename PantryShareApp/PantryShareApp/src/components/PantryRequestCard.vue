@@ -1,37 +1,49 @@
 <script setup>
-import { ref } from 'vue'
-
+import { toRefs } from 'vue';
+import { useFoodRequestStore } from '@/stores/foodrequest';
+import LiftedButton from '@/components/LiftedButton.vue';
 // register props
 const props = defineProps({
     pantryRequest: {
         type: Object,
         required: true
+    },
+    noButton: {
+        type: Boolean,
+        default: false
+    },
+    privacyRender: {
+        type: Boolean,
+        default: false
     }
-}
-)
+});
+// register emitters
+const emit = defineEmits(['fulfillRequest']);
 
-const fulfillRequest = function(){
-    console.log('Fulfilling request');
-    // // Call a REST API to fulfill the request
-    // try {
-    //     const response = await fetch('http://localhost/api/fulfillRequest', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             orderID: pantryRequest.order.OrderID
-    //         })
-    //     });
+// grab state
+const foodRequestStore = useFoodRequestStore();
+const { pantryRequest } = toRefs(props);
 
-    //     const data = await response.json();
-    //     console.log('Success:', data);
-    //     // do stuff with the data (like redirect to another page)
-    // } catch (error) {
-    //     console.error('Error:', error);
-    // }
+const fulfillRequest = () => {
+    const propRequest = pantryRequest.value;
+    const request = propRequest;
+    request.order.Status = "In Progress";
+    foodRequestStore.updateFoodRequestStore(request); // put the request in the pocket
+    emit('fulfillRequest'); // send the request to the parent, to tell it to navigate to the next page
 }
 
+const statusClass = (status) => {
+    switch (status) {
+        case 'Open':
+            return 'green-bg';
+        case 'In-Progress':
+            return 'yellow-bg';
+        case 'Completed':
+            return 'red-bg';
+        default:
+            return '';
+    }
+};
 </script>
 
 <template>
@@ -39,23 +51,22 @@ const fulfillRequest = function(){
         <div class="grid-item">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-info">{{ pantryRequest.order.orderItems.length + " Items at " +
-                        pantryRequest.order.PickupLocation + "." }}</h5>
+                    <h5 class="card-title text-info">{{ pantryRequest.order.orderItems.length + " Items" + (privacyRender ? "." : " at " + 
+                        pantryRequest.order.PickupLocation + ".") }}</h5>
                     <ul>
                         <li v-for="(item, index) in pantryRequest.order.orderItems" :key="item.FoodID">
                             {{ item.FoodName }}<span v-if="index !== pantryRequest.order.orderItems.length - 1">,</span><span v-else>.</span>
                         </li>
                     </ul>
-                    <div class="grid-item">
+                    <div class="grid-item d-flex justify-content-center p-1 status" :class="statusClass(pantryRequest.order.Status)">
                         <p class="card-text">Status: {{ pantryRequest.order.Status }}</p>
                     </div>
                 </div>
-                <button class="btn btn-primary m-1" @click="fulfillRequest">Fulfill Request</button>
+                <LiftedButton v-if="!noButton" text="Fulfill Request" @click="fulfillRequest" color="blue"/>
             </div>
         </div>
     </div>
 </template>
-
 <style scoped>
 /* Your component's CSS styles go here */
 .card {
@@ -86,5 +97,22 @@ ul {
     list-style: none;
     padding-left: 0;
     padding: 5px;
+}
+
+.yellow-bg {
+    background-color: var(--theme-yellow);
+}
+
+.green-bg {
+    background-color: var(--theme-green);
+}
+
+.red-bg {
+    background-color: var(--theme-red);
+}
+
+.status {
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #000;
 }
 </style>

@@ -39,6 +39,13 @@
   --overlay-two: rgba(0, 0, 0, 0.2);
   --overlay-three: rgba(0, 0, 0, 0.4);
   --overlay-four: rgba(0, 0, 0, 0.6);
+
+  --theme-blue: #2AB7CA;
+  --theme-red: #FE4A49;
+  --theme-yellow: #FED766;
+  --theme-grey: #E6E6EA;
+  --theme-white: #F4F4F8;
+  --theme-green: #6DD3CE;
 }
 
 *,
@@ -52,7 +59,7 @@
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  background: var(--theme-white);
   transition:
     color 0.5s,
     background-color 0.5s;

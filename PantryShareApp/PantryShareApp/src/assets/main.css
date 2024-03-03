@@ -10,7 +10,7 @@
 a,
 .green {
   text-decoration: none;
-  color: #2AB7CA;
+  color: var(--theme-blue);
   transition: 0.4s;
   padding: 3px;
 }
@@ -18,7 +18,7 @@ a,
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    color: var(--theme-red);
   }
 }
 
@@ -39,14 +39,14 @@ a,
 .fade-inflate-fast {
   animation-name: fade-in, inflate;
   animation-timing-function: ease-out, ease-out;
-  animation-duration: 1000ms, 1000ms;
+  animation-duration: 650ms, 650ms;
 }
 
 
 .fade-deflate-fast {
   animation-name: deflate, fade-out;
   animation-timing-function: ease-out, ease-out;
-  animation-duration: 1000ms, 1000ms;
+  animation-duration: 650ms, 650ms;
   animation-fill-mode: forwards, forwards;
 }
 

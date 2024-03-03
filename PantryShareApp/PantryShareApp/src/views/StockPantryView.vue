@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router';
 import PantryRequestCard from '@/components/PantryRequestCard.vue'
 import TestDataClass from '@/classes/TestDataClass'
 
@@ -11,14 +12,15 @@ const getPantryRequests = function () {
   try {
     pantryRequests.value = TestDataClass.getLocalPantryRequests();
     console.log('Success:', pantryRequests.value);
-    // do stuff with the data (like update the pantryRequests variable)
   } catch (error) {
     console.error('Error:', error);
   }
 }
 
-const doublePantryRequests = function () {
-  pantryRequests.value = pantryRequests.value.concat(pantryRequests.value);
+const router = useRouter();
+const fulfillRequest = function () {
+  console.log('Fulfilling request');
+  router.push('/fulfillrequest');
 }
 
 onMounted(() => {
@@ -32,14 +34,13 @@ onMounted(() => {
     <div class="row">
       <div class="col-6">
         <PantryRequestCard v-for="(item, index) in pantryRequests.slice(0, pantryRequests.length / 2)" :key="index"
-          :pantry-request="item" />
+          :pantry-request="item" @fulfill-request="fulfillRequest"/>
       </div>
       <div class="col-6">
-        <PantryRequestCard v-for="(item, index) in pantryRequests.slice(pantryRequests.length / 2)" :key="index"
-          :pantry-request="item" />
+        <PantryRequestCard v-for="(item, index) in pantryRequests.slice(pantryRequests.length / 2).filter(i => i.order.Status == 'Open')" :key="index"
+          :pantry-request="item" @fulfill-request="fulfillRequest"/>
       </div>
     </div>
-    <button @click="doublePantryRequests">Double Pantry Requests</button>
   </div>
 </template>
 
