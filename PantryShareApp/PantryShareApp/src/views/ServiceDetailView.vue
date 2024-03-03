@@ -1,13 +1,12 @@
 <template>
   <div class="request-details-container">
-    <!-- Request Details -->
+
     <div class="request-details">
       <h2>Request Details</h2>
       <p><strong>Location:</strong> {{ requestLocation }}</p>
       <p><strong>Status:</strong> {{ requestStatus }}</p>
     </div>
 
-    <!-- Items Requested -->
     <div class="items-requested">
       <h2>Items Requested</h2>
       <div v-for="(item, index) in uncheckedItems" :key="index" class="item">
@@ -20,7 +19,6 @@
       </div>
     </div>
 
-    <!-- Fulfilling Request Button -->
     <button @click="fulfillRequest">Fulfill Request</button>
   </div>
 </template>
@@ -44,19 +42,14 @@ const uncheckedItems = computed(() => {
 });
 
 const fulfillRequest = () => {
-  // Logic to handle fulfilling the request
-
-  // Display notification message
   showNotification();
 
-  // Redirect to SearchVue.vue after 2 seconds
   setTimeout(() => {
     router.push({ name: 'Search' });
   }, 2000);
 };
 
 const showNotification = () => {
-  // Display confirmation message
   alert("User has been notified. Thank you for your contribution!");
 };
 </script>
