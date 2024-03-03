@@ -62,6 +62,20 @@ onMounted(() => {
     box-shadow: hsl(50, 70%, 80%) 0px 0px 0px 0px !important;
 }
 
+.green {
+    background-color: var(--theme-green) !important;
+    color: var(--theme-white) !important;
+    box-shadow: hsl(120, 70%, 40%) 0px 10px 0px 0px !important;
+}
+.green:hover {
+    box-shadow: hsl(120, 70%, 40%) 0px 7px 0px 0px !important;
+}
+.green:active {
+    background-color: hsl(120, 70%, 80%) !important;
+    box-shadow: hsl(120, 70%, 80%) 0px 0px 0px 0px !important;
+}
+
+
 button {
   padding: 10px 30px;
   border-radius: 10px;

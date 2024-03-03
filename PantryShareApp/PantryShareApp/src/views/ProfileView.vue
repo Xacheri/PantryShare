@@ -97,5 +97,9 @@ export default {
 .action-buttons button:hover {
   background-color: #0056b3;
 }
+
+.action-buttons{
+    display: flex;
+}
 </style>
 
